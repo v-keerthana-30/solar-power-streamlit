@@ -6,19 +6,19 @@ import matplotlib.pyplot as plt
 
 st.title("Solar Power Generation Prediction")
 
-# Load model
+# Load trained model
 rf_model = joblib.load("best_model_rf.pkl")
 
 st.header("Adjust Environmental Conditions:")
 
-# Sliders with correct types
+# Sliders (draggable)
 distance_to_solar_noon = st.slider("Distance to Solar Noon", 0.0, 1.0, 0.5, 0.01)
-temperature = st.slider("Temperature (°F)", float(-50), float(150), 58.0, 1.0)
-wind_direction = st.slider("Wind Direction (degrees)", 0, 360, 180)
+temperature = st.slider("Temperature (°F)", -50.0, 150.0, 58.0, 1.0)
+wind_direction = st.slider("Wind Direction (degrees)", 0, 360, 180, 1)
 wind_speed = st.slider("Wind Speed (m/s)", 0.0, 50.0, 10.0, 0.1)
-sky_cover = st.slider("Sky Cover (%)", 0, 100, 20)
+sky_cover = st.slider("Sky Cover (%)", 0, 100, 20, 1)
 visibility = st.slider("Visibility (miles)", 0.0, 20.0, 10.0, 0.1)
-humidity = st.slider("Humidity (%)", 0, 100, 50)
+humidity = st.slider("Humidity (%)", 0, 100, 50, 1)
 avg_wind_speed_period = st.slider("Average Wind Speed (Period)", 0.0, 50.0, 9.0, 0.1)
 avg_pressure_period = st.slider("Average Pressure (Period)", 900.0, 1100.0, 1012.0, 0.1)
 
@@ -35,7 +35,7 @@ feature_cols = [
     'average-pressure-(period)'
 ]
 
-# Create input DataFrame
+# Create DataFrame
 input_df = pd.DataFrame([[
     float(distance_to_solar_noon),
     float(temperature),
@@ -48,12 +48,13 @@ input_df = pd.DataFrame([[
     float(avg_pressure_period)
 ]], columns=feature_cols)
 
-# Predict
+# Prediction updates instantly
 prediction = rf_model.predict(input_df)
+
 st.subheader("Predicted Solar Power Generation (kW):")
 st.write(round(prediction[0], 2))
 
-# Bar chart of input features
+# Dynamic bar chart of input features
 st.subheader("Input Feature Overview")
 fig, ax = plt.subplots(figsize=(8,4))
 ax.barh(feature_cols, input_df.iloc[0], color='skyblue')
