@@ -1,50 +1,42 @@
+# app.py
 import streamlit as st
 import pandas as pd
 import joblib
-from sklearn.preprocessing import LabelEncoder
-
-# Load the trained Random Forest model
-rf_model = joblib.load("best_model_rf.pkl")
-
-# Load the LabelEncoder
-le = LabelEncoder()
-le.fit(['Low', 'Medium', 'High'])  # Replace with your dataset Power_Level categories
+import numpy as np
 
 st.title("Solar Power Generation Prediction")
 
-st.sidebar.header("Input Parameters")
+# Load trained model
+rf_model = joblib.load("best_model_rf.pkl")
 
-def user_input_features():
-    distance_to_solar_noon = st.sidebar.number_input("Distance to Solar Noon", 0.0, 1.0, 0.5)
-    temperature = st.sidebar.number_input("Temperature (°F)", 0, 100, 60)
-    wind_direction = st.sidebar.number_input("Wind Direction (°)", 0, 360, 180)
-    wind_speed = st.sidebar.number_input("Wind Speed (m/s)", 0.0, 50.0, 10.0)
-    sky_cover = st.sidebar.number_input("Sky Cover (%)", 0, 100, 20)
-    visibility = st.sidebar.number_input("Visibility (km)", 0.0, 20.0, 10.0)
-    humidity = st.sidebar.number_input("Humidity (%)", 0, 100, 50)
-    avg_wind_speed = st.sidebar.number_input("Average Wind Speed", 0.0, 50.0, 10.0)
-    avg_pressure = st.sidebar.number_input("Average Pressure", 900.0, 1100.0, 1012.0)
-    power_level = st.sidebar.selectbox("Power Level", ['Low', 'Medium', 'High'])
-    
-    power_level_encoded = le.transform([power_level])[0]
+st.header("Enter Environmental Conditions:")
 
-    data = {
-        'distance-to-solar-noon': distance_to_solar_noon,
-        'temperature': temperature,
-        'wind-direction': wind_direction,
-        'wind-speed': wind_speed,
-        'sky-cover': sky_cover,
-        'visibility': visibility,
-        'humidity': humidity,
-        'average-wind-speed-(period)': avg_wind_speed,
-        'average-pressure-(period)': avg_pressure,
-        'Power_Level': power_level_encoded
-    }
-    features = pd.DataFrame(data, index=[0])
-    return features
+# User inputs
+distance_to_solar_noon = st.number_input("Distance to Solar Noon", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
+temperature = st.number_input("Temperature (°F)", min_value=-50, max_value=150, value=58)
+wind_direction = st.number_input("Wind Direction (degrees)", min_value=0, max_value=360, value=180)
+wind_speed = st.number_input("Wind Speed (m/s)", min_value=0.0, max_value=50.0, value=10.0, step=0.1)
+sky_cover = st.number_input("Sky Cover (%)", min_value=0, max_value=100, value=20)
+visibility = st.number_input("Visibility (miles)", min_value=0.0, max_value=20.0, value=10.0, step=0.1)
+humidity = st.number_input("Humidity (%)", min_value=0, max_value=100, value=50)
+avg_wind_speed_period = st.number_input("Average Wind Speed (Period)", min_value=0.0, max_value=50.0, value=9.0, step=0.1)
+avg_pressure_period = st.number_input("Average Pressure (Period)", min_value=900.0, max_value=1100.0, value=1012.0, step=0.1)
 
-input_df = user_input_features()
+# Prepare input for prediction (match training columns exactly)
+input_df = pd.DataFrame({
+    "distance-to-solar-noon": [distance_to_solar_noon],
+    "temperature": [temperature],
+    "wind-direction": [wind_direction],
+    "wind-speed": [wind_speed],
+    "sky-cover": [sky_cover],
+    "visibility": [visibility],
+    "humidity": [humidity],
+    "average-wind-speed-(period)": [avg_wind_speed_period],
+    "average-pressure-(period)": [avg_pressure_period]
+})
 
+# Predict
 prediction = rf_model.predict(input_df)
-st.subheader("Predicted Solar Power Generated (kW)")
-st.write(prediction[0])
+
+st.subheader("Predicted Solar Power Generation (kW):")
+st.write(round(prediction[0], 2))
