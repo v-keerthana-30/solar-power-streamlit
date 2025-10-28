@@ -1,9 +1,9 @@
 ###  Solar Power Generation Data Analysis (Regression Project)
 
-📌 **Project Overview**
+### 📌 **Project Overview**
 This project focuses on analyzing and predicting solar power generation based on various environmental factors. Using regression techniques, it aims to model the relationship between weather parameters and energy output to enhance power forecasting accuracy and support efficient energy management.
 
-🎯 **Objectives**
+### 🎯 **Objectives**
 The main goals of this analysis are to:
 
 * Identify key environmental factors influencing solar power output.
@@ -12,7 +12,7 @@ The main goals of this analysis are to:
 * Visualize the relationship between variables like temperature, wind speed, and humidity with power generation.
 * Support sustainable energy planning through data-driven insights.
 
-🧠 **Analytical Sections & Sample Insights**
+### 🧠 **Analytical Sections & Sample Insights**
 1️⃣ **Data Understanding & Cleaning**
 
 * Loaded and explored the *solarpowergeneration.csv* dataset with 10 variables and 2920 instances.
@@ -36,14 +36,14 @@ The main goals of this analysis are to:
 * High humidity and dense sky cover led to reduced energy production.
 * Model achieved strong predictive accuracy, supporting reliable power forecasting.
 
-⚙️ **Tools & Technologies**
+### ⚙️ **Tools & Technologies**
 
 * **Programming Language:** Python
 * **Libraries Used:** Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn
 * **Dataset:** `solarpowergeneration.csv`
 * **Type:** Regression Project
 
-🧾 **How to Run the Project**
+### 🧾 **How to Run the Project**
 
 1. Clone the project repository (or open the provided files).
 2. Open the Jupyter Notebook or Python file.
