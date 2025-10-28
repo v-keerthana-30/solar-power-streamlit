@@ -1,22 +1,39 @@
 ### **Structure**
 
 solar-power-project/
+
 │
+
 ├─ data/
+
 │    └─ solarpowergeneration.csv
+
 │
+
 ├─ notebooks/
+
 │    ├─ 1_EDA.ipynb
+
 │    ├─ 2_Model_Building.ipynb
+
 │    └─ 3_Model_Evaluation.ipynb
+
 │
+
 ├─ models/
+
 │    └─ best_model_rf.pkl
+
 │
+
 ├─ app/
+
 │    └─ app.py
+
 │
+
 ├─ requirements.txt
+
 └─ README.md
 
 ***
