@@ -1,0 +1,3 @@
+solarpowergeneration.csv
+→ Contains solar energy generation data along with environmental factors like temperature, wind speed, humidity, and sky cover.
+Used to analyze the relationship between weather parameters and solar power output for model training and prediction.
