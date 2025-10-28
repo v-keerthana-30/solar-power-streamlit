@@ -3,6 +3,8 @@
 ### 📌 **Project Overview**
 This project focuses on analyzing and predicting solar power generation based on various environmental factors. Using regression techniques, it aims to model the relationship between weather parameters and energy output to enhance power forecasting accuracy and support efficient energy management.
 
+***
+
 ### 🎯 **Objectives**
 The main goals of this analysis are to:
 
@@ -11,6 +13,8 @@ The main goals of this analysis are to:
 * Build and evaluate regression models for energy prediction.
 * Visualize the relationship between variables like temperature, wind speed, and humidity with power generation.
 * Support sustainable energy planning through data-driven insights.
+
+***
 
 ### 🧠 **Analytical Sections & Sample Insights**
 1️⃣ **Data Understanding & Cleaning**
@@ -36,6 +40,8 @@ The main goals of this analysis are to:
 * High humidity and dense sky cover led to reduced energy production.
 * Model achieved strong predictive accuracy, supporting reliable power forecasting.
 
+***
+
 ### ⚙️ **Tools & Technologies**
 
 * **Programming Language:** Python
@@ -43,11 +49,13 @@ The main goals of this analysis are to:
 * **Dataset:** `solarpowergeneration.csv`
 * **Type:** Regression Project
 
+***
+
 ### 🧾 **How to Run the Project**
 
-1. Clone the project repository (or open the provided files).
-2. Open the Jupyter Notebook or Python file.
-3. Load the dataset (`solarpowergeneration.csv`).
-4. Execute each code cell to perform EDA, model building, and evaluation.
-5. Review plots and metrics for insights and predictions.
+1. Open the Jupyter Notebook or Python file.
+2. Load the dataset (`solarpowergeneration.csv`).
+3. Execute each code cell to perform EDA, model building, and evaluation.
+4. Review plots and metrics for insights and predictions.
+   
 Streamlit Link: https://solar-power-app-zmtxuaeaigwvasls727hfa.streamlit.app/
