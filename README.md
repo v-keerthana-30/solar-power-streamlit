@@ -1,4 +1,4 @@
-### **Structure**
+## 📂 Project Structure
 
 solar-power-project/
 │
